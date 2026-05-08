@@ -1,7 +1,7 @@
 # MathFlowEngine - Project Tracking & Context History
 
 **Last Updated:** May 8, 2026  
-**Current Status:** Complete MVP pushed to GitHub
+**Current Status:** Complete MVP + Teacher Brain Architecture defined
 
 ---
 
@@ -188,6 +188,48 @@ Generator   Engine    Agent       Agent
 
 ---
 
+### Session 10: Teacher Brain Architecture Defined
+**Date:** May 8, 2026
+
+**Brainstorm Focus:** Building the "Teacher Brain" - pedagogical intelligence layer
+
+**Key Insights from Brainstorm:**
+
+The animation engine is only the BODY. The real intelligence is:
+- How concepts emerge
+- How transitions happen
+- How intuition is formed
+- How confusion is prevented
+- How math structures become "inevitable"
+
+**5 Core Things Brain Must Learn:**
+
+1. **Concept Dependency Understanding**
+   - Prerequisites before new idea
+   - Dependency trees, prerequisite graphs
+
+2. **Concept Emergence Logic** (MOST IMPORTANT)
+   - What PROBLEM forces this concept to exist
+   - Derivative → average speed fails → need instant measurement
+   
+3. **Visual Pedagogy Intelligence**
+   - Which visualization best explains each concept
+   - Integration → area accumulation
+   - Sine → rotating circle projection
+
+4. **Misconception Prediction**
+   - Predict where students mentally break
+   - Great teachers teach AGAINST confusion proactively
+   
+5. **Interactive Causality Understanding**
+   - If variable changes, what structure changes?
+
+**Created:**
+- `PEDAGOGICAL_SCHEMA.md` - Structured teaching schema for every concept
+- Include: intuition, problem, emergence, formalization, visualizations, misconceptions, interactions
+
+---
+
 ## 🏗️ ARCHITECTURE DECISIONS
 
 ### Why Python + Pillow?
@@ -213,6 +255,8 @@ Generator   Engine    Agent       Agent
 | File | Purpose |
 |------|---------|
 | `README.md` | Complete documentation |
+| `PROJECT_TRACKING.md` | This file - context for new sessions |
+| `PEDAGOGICAL_SCHEMA.md` | Teacher Brain - structured teaching schemas |
 | `requirements.txt` | Dependencies |
 
 ### Engine Files
