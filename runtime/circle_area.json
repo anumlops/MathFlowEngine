@@ -1,0 +1,122 @@
+{
+  "version": "1.0",
+  "lesson_id": "circle_area",
+  "title": "Why is Area = pi*r^2?",
+  
+  "description": "Discover why doubling radius quadruples area",
+  
+  "variables": [
+    {
+      "id": "r",
+      "name": "Radius",
+      "symbol": "r",
+      "unit": "cm",
+      "type": "slider",
+      "min": 0.5,
+      "max": 5.0,
+      "default": 1.5,
+      "step": 0.1
+    }
+  ],
+  
+  "formulas": [
+    {
+      "id": "area",
+      "name": "Area",
+      "formula": "pi * r * r",
+      "unit": "cm²",
+      "display": "A = {result}"
+    },
+    {
+      "id": "circumference", 
+      "name": "Circumference",
+      "formula": "2 * pi * r",
+      "unit": "cm",
+      "display": "C = {result}"
+    },
+    {
+      "id": "diameter",
+      "name": "Diameter",
+      "formula": "2 * r",
+      "unit": "cm",
+      "display": "d = {result}"
+    }
+  ],
+  
+  "initial_state": {
+    "r": 1.5,
+    "area": 7.07,
+    "circumference": 9.42,
+    "diameter": 3.0
+  },
+  
+  "visual": {
+    "type": "circle",
+    "center": {"x": 0, "y": 0},
+    "radius": "r",
+    "fill_color": "rgba(65, 105, 225, 0.4)",
+    "stroke_color": "#4169E1",
+    "stroke_width": 2,
+    "show_radius_line": true,
+    "show_center": true,
+    "grid": true,
+    "scale": 50
+  },
+  
+  "discoveries": [
+    {
+      "id": "double_radius",
+      "condition": "r >= 2.9 AND r <= 3.1",
+      "trigger_value": 3.0,
+      "message": "DISCOVERY! When radius DOUBLES (1.5 → 3.0), area QUADRUPLES (7.07 → 28.27)!",
+      "formula": "A2 = 4 * A1"
+    },
+    {
+      "id": "triple_radius",
+      "condition": "r >= 4.4 AND r <= 4.6", 
+      "trigger_value": 4.5,
+      "message": "DISCOVERY! When radius TRIPLES, area becomes 9x!",
+      "formula": "A3 = 9 * A1"
+    }
+  ],
+  
+  "animation": {
+    "enabled": true,
+    "from_r": 1.5,
+    "to_r": 3.0,
+    "duration": 3.0,
+    "easing": "smooth",
+    "fps": 60
+  },
+  
+  "teaching_steps": [
+    {
+      "step": 1,
+      "title": "The Mystery",
+      "visual_state": {"r": 0.5}
+    },
+    {
+      "step": 2,
+      "title": "Start with Radius",
+      "visual_state": {"r": 1.5}
+    },
+    {
+      "step": 3,
+      "title": "The Magic Pi",
+      "visual_state": {"r": 1.5}
+    },
+    {
+      "step": 4,
+      "title": "The SQUARE Matters!",
+      "visual_state": {"r": 3.0},
+      "animation": {"from": 1.5, "to": 3.0}
+    }
+  ],
+  
+  "display_panel": {
+    "show_formula": true,
+    "show_values": true,
+    "show_discoveries": true,
+    "formula_latex": "A = \\pi r^2"
+  }
+}

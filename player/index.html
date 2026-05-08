@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathFlowEngine Interactive Player</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="player-container">
+        <!-- Header -->
+        <header class="player-header">
+            <h1 id="lesson-title">Circle Area: Why r²?</h1>
+            <p id="lesson-description">Discover why doubling radius quadruples area</p>
+        </header>
+        
+        <!-- Main Canvas Area -->
+        <main class="main-content">
+            <div class="canvas-container">
+                <canvas id="render-canvas" width="600" height="450"></canvas>
+                
+                <!-- Canvas Overlay Info -->
+                <div class="canvas-info">
+                    <span id="canvas-label">r = </span><span id="canvas-r">1.50</span> cm
+                </div>
+            </div>
+            
+            <!-- Side Panel -->
+            <aside class="side-panel">
+                <!-- Display Panel -->
+                <div class="display-panel">
+                    <h2>Values</h2>
+                    <div class="formula-display">
+                        <span class="formula-label">A = πr²</span>
+                    </div>
+                    <div class="value-grid">
+                        <div class="value-item">
+                            <span class="value-name">Radius (r)</span>
+                            <span class="value-number" id="display-r">1.50</span>
+                            <span class="value-unit">cm</span>
+                        </div>
+                        <div class="value-item highlight">
+                            <span class="value-name">Area</span>
+                            <span class="value-number" id="display-area">7.07</span>
+                            <span class="value-unit">cm²</span>
+                        </div>
+                        <div class="value-item">
+                            <span class="value-name">Circumference</span>
+                            <span class="value-number" id="display-c">9.42</span>
+                            <span class="value-unit">cm</span>
+                        </div>
+                        <div class="value-item">
+                            <span class="value-name">Diameter</span>
+                            <span class="value-number" id="display-d">3.00</span>
+                            <span class="value-unit">cm</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Discovery Panel -->
+                <div class="discovery-panel" id="discovery-panel">
+                    <div class="discovery-content">
+                        <span class="discovery-icon">🎉</span>
+                        <p class="discovery-text" id="discovery-text"></p>
+                        <span class="discovery-formula" id="discovery-formula"></span>
+                    </div>
+                </div>
+            </aside>
+        </main>
+        
+        <!-- Controls -->
+        <footer class="controls">
+            <div class="slider-group">
+                <label for="r-slider">Radius (r): <span id="slider-value">1.50</span> cm</label>
+                <input type="range" id="r-slider" min="0.5" max="5" step="0.1" value="1.5">
+            </div>
+            
+            <div class="control-buttons">
+                <button id="btn-play" class="btn btn-primary">
+                    <span class="btn-icon">▶</span> Play
+                </button>
+                <button id="btn-reset" class="btn btn-secondary">
+                    <span class="btn-icon">↺</span> Reset
+                </button>
+                <button id="btn-discover" class="btn btn-accent">
+                    <span class="btn-icon">💡</span> Discover
+                </button>
+            </div>
+        </footer>
+    </div>
+    
+    <script src="math_engine.js"></script>
+    <script src="display.js"></script>
+    <script src="controller.js"></script>
+    <script src="renderer.js"></script>
+    <script src="player.js"></script>
+</body>
+</html>
