@@ -5,6 +5,7 @@ Renders visual states to actual images.
 Handles the "pixel to screen" part of the engine.
 """
 
+from dataclasses import dataclass
 from PIL import Image, ImageDraw, ImageFont
 import math
 import os

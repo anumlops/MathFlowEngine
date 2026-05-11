@@ -329,15 +329,15 @@ class VisualTransformEngine:
             if h == 0:
                 return 0
             return (function(point_x + h) - function(point_x)) / h
-        
-from_state = VisualState(
+
+        from_state = VisualState(
             concept_id="derivative",
             variables={
                 "h": h_values[0],
                 "slope": calc_slope(h_values[0])
             }
         )
-        
+
         to_state = VisualState(
             concept_id="derivative",
             variables={
@@ -345,7 +345,7 @@ from_state = VisualState(
                 "slope": calc_slope(h_values[-1])
             }
         )
-        
+
         animation = Animation(
             name="secant_to_tangent",
             from_state=from_state,

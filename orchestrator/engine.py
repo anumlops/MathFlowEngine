@@ -5,8 +5,14 @@ import math
 from core.concepts import Concept, ConceptGraph, ConceptBuilder, DifficultyLevel, MathVariable
 from visual.transform import VisualTransformEngine, VisualState, Animation, EasingFunction, PedagogicalSequence
 from render.renderer import FrameRenderer, RendererConfig, render_animation, create_gif
+from brain import (
+    SandersonLessonDesigner, IntuitionBuilder, MisconceptionHandler,
+    TeachingSequenceBuilder, TransformationEngine,
+    TeachingPhase, AnimationTechnique, SandersonStep, VisualMetaphor
+)
 
 
+@dataclass
 class TeachingStep:
     """A single teaching step."""
     step_number: int
@@ -19,6 +25,7 @@ class TeachingStep:
     animation_data: Optional[Dict] = None
 
 
+@dataclass
 class Lesson:
     """A complete lesson."""
     concept_id: str
@@ -49,6 +56,36 @@ class MathFlowEngine:
         self.visual_engine = VisualTransformEngine()
         self.renderer = FrameRenderer()
         self.output_dir = "output"
+        # The Brain - Sanderson's teaching methodology
+        self.sanderson_designer = SandersonLessonDesigner()
+        self.intuition_builder = IntuitionBuilder()
+        self.misconception_handler = MisconceptionHandler()
+
+    def build_sanderson_lesson(self, concept_id: str, concept_data: Dict) -> List[SandersonStep]:
+        """
+        Build a lesson following Grant Sanderson's methodology.
+
+        This creates lessons with:
+        1. Problem-first structure
+        2. Animation-driven intuition
+        3. Pattern discovery moments
+        4. Just-in-time prerequisites
+        5. Misconception handling
+
+        Args:
+            concept_id: The concept to teach
+            concept_data: Dictionary with keys like:
+                - problem_motivated_by
+                - intuition
+                - default_visual
+                - formula_latex
+                - formula_explanation
+                - prerequisites
+
+        Returns:
+            List of SandersonSteps for the lesson
+        """
+        return self.sanderson_designer.design(concept_id, concept_data)
     
     def build_lesson(self, concept_id: str) -> Lesson:
         """Build a lesson for a concept."""
@@ -206,20 +243,74 @@ class MathFlowEngine:
 
 def demo():
     """Demo."""
-    
+
     print("=" * 60)
     print("MathFlowEngine Demo")
     print("=" * 60)
-    
+
     engine = MathFlowEngine()
-    
+
     print("\n--- Circle Area Lesson ---")
     lesson = engine.build_lesson("circle_area")
     engine.teach(lesson)
-    
+
     print("\n--- Derivative Lesson ---")
     lesson = engine.build_lesson("derivative")
     engine.teach(lesson)
+
+    # New: Demonstrate Sanderson's Brain
+    print("\n" + "=" * 60)
+    print("SANDERSON'S BRAIN - Mathematical Pedagogy Engine")
+    print("=" * 60)
+
+    # Design a lesson using Sanderson's methodology
+    concept_data = {
+        "problem_motivated_by": "How do we measure how fast something is changing at an EXACT moment?",
+        "intuition": "Think of a car's speedometer - it shows speed RIGHT NOW, not average",
+        "default_visual": "secant_to_tangent",
+        "formula_latex": r"f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}",
+        "formula_explanation": "The limit of average rate as the interval approaches zero",
+        "prerequisites": ["function", "average_rate"]
+    }
+
+    print("\n--- Derivative Lesson (Sanderson Style) ---\n")
+    steps = engine.build_sanderson_lesson("derivative", concept_data)
+
+    for i, step in enumerate(steps, 1):
+        print(f"Step {i}: {step.title}")
+        print(f"  Phase: {step.phase.value.upper()}")
+        print(f"  Animation: {step.animation_technique.value}")
+        print(f"  Visual: {step.visual_description}")
+        print(f"  Discovery Prompt: \"{step.discovery_prompt}\"")
+        if step.formal_notation:
+            print(f"  Formula: {step.formal_notation}")
+        if step.misconception_correction:
+            print(f"  ✗ Misconception: {step.anticipated_misconception}")
+            print(f"  ✓ Correction: {step.misconception_correction}")
+        print()
+
+    # Show intuition metaphors
+    print("\n--- Intuition Metaphors Library ---\n")
+    for concept in ["derivative", "limit", "circle_area", "matrix"]:
+        result = IntuitionBuilder.build_intuition(concept)
+        if result["metaphor"]:
+            print(f"{concept.upper()}:")
+            print(f"  Metaphor: {result['metaphor'].metaphor}")
+            print(f"  Animation: {result['metaphor'].animation_behavior}")
+            if result['metaphor'].limitations:
+                print(f"  Limitation: {result['metaphor'].limitations}")
+            print()
+
+    # Show transformations
+    print("\n--- Transformation Library (Sanderson's Core Technique) ---\n")
+    for name in ["secant_to_tangent", "grid_to_transformation", "circle_to_pi"]:
+        t = TransformationEngine.get_transformation(name)
+        if t:
+            print(f"{name.upper()}:")
+            print(f"  From: {t['from']}")
+            print(f"  To: {t['to']}")
+            print(f"  Insight: {t['insight']}")
+            print()
 
 
 if __name__ == "__main__":
